@@ -1,0 +1,48 @@
+<ion-content
+  ><div id="container">
+    <div class="isi">
+      <div class="judul">
+        DAFTAR <br />
+        AKUN
+      </div>
+
+      <div class="field">
+        Nama
+        <ion-input required [(ngModel)]="nama" type="text" class="tombol">
+        </ion-input
+        >Username
+        <ion-input required [(ngModel)]="username" type="text"> </ion-input
+        >Password
+        <ion-input required [(ngModel)]="password" type="password"> </ion-input>
+      </div>
+
+      <ion-row>
+        <ion-col>
+          <button
+            type="button"
+            (click)="addUser()"
+            color="primary"
+            shape="full"
+            expand="block"
+            class="tombol-regis"
+          >
+            REGISTER
+          </button>
+        </ion-col>
+      </ion-row>
+      sudah punya akun? <a href="login"> &nbsp;<u>login</u> </a>
+      <!-- <form action="" method="post">
+        <a href="login">
+          <button href="login" type="button" class="tombol-login" name="login">
+            LOGIN
+          </button>
+        </a>
+        <a href="login">
+          <button href="login" type="button" class="tombol-regis" name="login">
+            REGISTER
+          </button>
+        </a>
+      </form> -->
+    </div>
+  </div>
+</ion-content>
