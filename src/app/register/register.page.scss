@@ -65,7 +65,7 @@ ion-button {
 }
 .tombol-regis {
   background: #f2880b;
-  width: 100%;
+  width: 60%;
   color: black;
   border: 0px;
   margin-top: 5%;
@@ -73,10 +73,14 @@ ion-button {
   border-radius: 10px;
   padding: 10px 12px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 1000;
+  font-size: 15px;
 }
 ion-img {
   width: 80%;
   display: block;
   margin: auto;
+}
+ion-content.background {
+  --ion-background-color: #110a61;
 }

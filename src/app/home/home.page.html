@@ -1,13 +1,52 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Home Aplikasi</ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content>
-  <ion-item (click)="logout()">
-    <ion-icon slot="start" ios="exit-outline" md="exit-sharp"></ion-icon>
-    <ion-label>Logout</ion-label>
-  </ion-item>
-  <hr />
-  Selamat datang {{ nama }}
-</ion-content>
+<div class="ion-page" id="main-content">
+  <ion-content padding class="background" [fullscreen]="true">
+    <div id="container">
+      <div class="header">
+        <div class="identitas">
+          <div class="judul">Halo!</div>
+          <div class="nama">Selamat datang {{ nama }}</div>
+        </div>
+        <div class="icon">
+          <ion-icon md="exit-sharp" (click)="logout()"></ion-icon>
+        </div>
+      </div>
+      <div class="isi">
+        <form action="" method="post">
+          <div class="produk">
+            <a href="produk">
+              <button
+                href="produk"
+                type="button"
+                class="tombol-menu"
+                name="produk"
+              >
+                <ion-icon name="bag" class="tombol-icon"></ion-icon>
+              </button>
+            </a>
+            <div class="keterangan">PRODUK</div>
+          </div>
+          <div class="pemesanan">
+            <a href="coba-sidebar">
+              <button
+                href="produk"
+                type="button"
+                class="tombol-menu"
+                name="produk"
+              >
+                <ion-icon name="cart" class="tombol-icon"></ion-icon>
+              </button>
+            </a>
+            <div class="keterangan">PEMESANAN</div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ion-content>
+</div>
+
+<!-- <ion-button routerLink="/start">start</ion-button>
+  <a href="start">
+    <button href="start" type="button" class="tombol-regis" name="login">
+      REGISTER START
+    </button>
+  </a> -->

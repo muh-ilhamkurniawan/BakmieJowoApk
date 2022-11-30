@@ -9,11 +9,11 @@ const routes: Routes = [
       import('./home/home.module').then((m) => m.HomePageModule),
     canLoad: [AuthGuard], // Secure all child pages
   },
-  // {
-  //   path: '',
-  //   redirectTo: 'login',
-  //   pathMatch: 'full',
-  // },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
   {
     path: 'login',
     loadChildren: () =>
@@ -21,11 +21,11 @@ const routes: Routes = [
     canLoad: [AutoLoginGuard],
   },
 
-  {
-    path: '',
-    redirectTo: 'folder/Inbox',
-    pathMatch: 'full',
-  },
+  // {
+  //   path: '',
+  //   redirectTo: 'folder/Inbox',
+  //   pathMatch: 'full',
+  // },
   {
     path: 'produk',
     loadChildren: () =>

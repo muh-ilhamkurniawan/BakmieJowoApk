@@ -1,52 +1,49 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content
-  ><div id="container">
-    <div class="isi">
-      <div class="judul">
-        LOGIN <br />
-        AKUN
-      </div>
+<div class="ion-page" id="main-content">
+  <ion-content padding class="background" [fullscreen]="true"
+    ><div id="container">
+      <div class="isi">
+        <div class="judul">
+          LOGIN <br />
+          AKUN
+        </div>
 
-      <div class="field">
-        Username
-        <ion-input
-          type="text"
-          [(ngModel)]="username"
-          required="required"
-        ></ion-input>
-        Password
-        <ion-input type="password" [(ngModel)]="password" required="required">
-        </ion-input>
-        <div class="nama">Lupa Password</div>
-      </div>
+        <div class="field">
+          Username
+          <ion-input
+            type="text"
+            [(ngModel)]="username"
+            required="required"
+          ></ion-input>
+          Password
+          <ion-input type="password" [(ngModel)]="password" required="required">
+          </ion-input>
+          <div class="nama">Lupa Password</div>
+        </div>
 
-      <ion-row>
-        <ion-col>
-          <button
-            type="submit"
-            color="primary"
-            expand="block"
-            (click)="prosesLogin()"
-            class="tombol-login"
-          >
-            LOGIN
-          </button>
-          <a href="register">
+        <ion-row>
+          <ion-col>
             <button
-              href="register"
-              type="button"
-              class="tombol-regis"
-              name="register"
+              type="submit"
+              color="primary"
+              expand="block"
+              (click)="prosesLogin()"
+              class="tombol-login"
             >
-              REGISTER
+              LOGIN
             </button>
-          </a>
-        </ion-col>
-      </ion-row>
+            <a href="register">
+              <button
+                href="register"
+                type="button"
+                class="tombol-regis"
+                name="register"
+              >
+                REGISTER
+              </button>
+            </a>
+          </ion-col>
+        </ion-row>
+      </div>
     </div>
-  </div>
-</ion-content>
+  </ion-content>
+</div>
