@@ -7,7 +7,6 @@ import { threadId } from 'worker_threads';
   selector: 'app-start',
   templateUrl: './start.page.html',
   styleUrls: ['./start.page.scss'],
-  //cek
 })
 export class StartPage implements OnInit {
   constructor(private router: Router, public menuCtrl: MenuController) {}
