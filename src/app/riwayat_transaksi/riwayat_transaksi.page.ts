@@ -1,7 +1,8 @@
-
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { ApiService } from '../api.service';
+import { AuthenticationService } from '../services/authentication.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-riwayat_transaksi',
   templateUrl: './riwayat_transaksi.page.html',
@@ -15,14 +16,17 @@ export class Riwayat_transaksiPage {
   constructor(
     public _apiService: ApiService,
     private alertController: AlertController,
-  ) {
-
-  }
+    private authService: AuthenticationService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     console.log('cek fungsi halaman event init jalan');
   }
-
+  logout() {
+    this.authService.logout(); // lempar ke authService lalu cari fungsi logout
+    this.router.navigateByUrl('/', { replaceUrl: true }); // alihkan ke halama
+  }
   ionViewDidEnter() {
     console.log('jika selesai loading');
     this.page = 0;
@@ -33,7 +37,9 @@ export class Riwayat_transaksiPage {
   paginateArray() {
     this.page++;
     return this.riwayat_transaksi.filter(
-      x => x.urutan_list > (this.page * this.perPage - this.perPage) && x.urutan_list <= (this.page * this.perPage)
+      (x) =>
+        x.urutan_list > this.page * this.perPage - this.perPage &&
+        x.urutan_list <= this.page * this.perPage
     );
   }
 
@@ -44,13 +50,13 @@ export class Riwayat_transaksiPage {
         this.riwayat_transaksi = res;
         this.lists = this.paginateArray();
       },
-      error: (err:any) => {
+      error: (err: any) => {
         console.log(err);
       },
-    })
+    });
   }
 
-  doRefresh(event:any) {
+  doRefresh(event: any) {
     console.log('Mulai Refresh Konten');
     setTimeout(() => {
       console.log('Selesai Refresh Konten');
@@ -61,7 +67,7 @@ export class Riwayat_transaksiPage {
     }, 2000);
   }
 
-  loadMore(event:any) {
+  loadMore(event: any) {
     console.log(event);
     setTimeout(() => {
       const array = this.paginateArray();
@@ -71,48 +77,48 @@ export class Riwayat_transaksiPage {
       event.target.complete();
       if (array?.length < this.perPage) {
         event.target.disabled = true;
-      };
+      }
     }, 1000);
   }
 
   deleteRiwayat_transaksi(id: any) {
-    this.alertController.create({
-      header: 'perhatian',
-      subHeader: 'Yakin menghapus data ini?',
-      buttons: [
-        {
-          text: 'Batal',
-          handler: (data: any) => {
-            console.log('dibatalkan', data);
-          }
-        },
-        {
-          text: 'Yakin',
-          handler: (data: any) => {
-            //jika tekan yakin
-            this._apiService.hapus(id, '/hapusRiwayat_transaksi.php?id=').subscribe({
-              next: (res: any) => {
-                console.log('sukses', res);
-                this.page = 0;
-                this.perPage = 10;
-                this.getRiwayat_transaksi();
-              },
-              error: (error: any) => {
-                this._apiService.notif('gagal');
-              }
-            })
-          }
-        }
-      ]
-    }).then(res => {
-      res.present();
-    })
+    this.alertController
+      .create({
+        header: 'perhatian',
+        subHeader: 'Yakin menghapus data ini?',
+        buttons: [
+          {
+            text: 'Batal',
+            handler: (data: any) => {
+              console.log('dibatalkan', data);
+            },
+          },
+          {
+            text: 'Yakin',
+            handler: (data: any) => {
+              //jika tekan yakin
+              this._apiService
+                .hapus(id, '/hapusRiwayat_transaksi.php?id=')
+                .subscribe({
+                  next: (res: any) => {
+                    console.log('sukses', res);
+                    this.page = 0;
+                    this.perPage = 10;
+                    this.getRiwayat_transaksi();
+                  },
+                  error: (error: any) => {
+                    this._apiService.notif('gagal');
+                  },
+                });
+            },
+          },
+        ],
+      })
+      .then((res) => {
+        res.present();
+      });
   }
-
 }
-
-
-
 
 /* End of file  */
 

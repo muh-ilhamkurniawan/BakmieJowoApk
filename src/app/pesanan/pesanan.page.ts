@@ -4,14 +4,14 @@ import { ApiService } from '../api.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.page.html',
-  styleUrls: ['./user.page.scss'],
+  selector: 'app-pesanan',
+  templateUrl: './pesanan.page.html',
+  styleUrls: ['./pesanan.page.scss'],
 })
-export class UserPage {
+export class PesananPage {
   page = 0;
   perPage = 10;
-  user: any[] = [];
+  pesanan: any[] = [];
   lists: any[] = [];
   constructor(
     public _apiService: ApiService,
@@ -23,31 +23,33 @@ export class UserPage {
   ngOnInit() {
     console.log('cek fungsi halaman event init jalan');
   }
+
   logout() {
     this.authService.logout(); // lempar ke authService lalu cari fungsi logout
     this.router.navigateByUrl('/', { replaceUrl: true }); // alihkan ke halama
   }
+
   ionViewDidEnter() {
     console.log('jika selesai loading');
     this.page = 0;
     this.perPage = 10;
-    this.getUser();
+    this.getPesanan();
   }
 
   paginateArray() {
     this.page++;
-    return this.user.filter(
+    return this.pesanan.filter(
       (x) =>
         x.urutan_list > this.page * this.perPage - this.perPage &&
         x.urutan_list <= this.page * this.perPage
     );
   }
 
-  getUser() {
-    this._apiService.tampil('tampilUser.php').subscribe({
+  getPesanan() {
+    this._apiService.tampil('tampilPesanan.php').subscribe({
       next: (res: any) => {
         console.log('sukses', res);
-        this.user = res;
+        this.pesanan = res;
         this.lists = this.paginateArray();
       },
       error: (err: any) => {
@@ -63,7 +65,7 @@ export class UserPage {
       event.target.complete();
       this.page = 0;
       this.perPage = 10;
-      this.getUser();
+      this.getPesanan();
     }, 2000);
   }
 
@@ -81,7 +83,7 @@ export class UserPage {
     }, 1000);
   }
 
-  deleteUser(id: any) {
+  deletePesanan(id: any) {
     this.alertController
       .create({
         header: 'perhatian',
@@ -97,12 +99,12 @@ export class UserPage {
             text: 'Yakin',
             handler: (data: any) => {
               //jika tekan yakin
-              this._apiService.hapus(id, '/hapusUser.php?id=').subscribe({
+              this._apiService.hapus(id, '/hapusPesanan.php?id=').subscribe({
                 next: (res: any) => {
                   console.log('sukses', res);
                   this.page = 0;
                   this.perPage = 10;
-                  this.getUser();
+                  this.getPesanan();
                 },
                 error: (error: any) => {
                   this._apiService.notif('gagal');
@@ -120,5 +122,5 @@ export class UserPage {
 
 /* End of file  */
 
-/* Created at 2022-11-30 11:44:30 */
+/* Created at 2022-12-01 08:35:02 */
 /* Mohammad Irham Akbar CRUD IONIC 6 Angular */

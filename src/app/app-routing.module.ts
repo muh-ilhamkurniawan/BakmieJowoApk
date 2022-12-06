@@ -10,8 +10,27 @@ const routes: Routes = [
     canLoad: [AuthGuard], // Secure all child pages
   },
   {
+    path: 'pesanan',
+    loadChildren: () =>
+      import('./pesanan/pesanan.module').then((m) => m.PesananPageModule),
+  },
+  {
+    path: 'pesanan_tambah',
+    loadChildren: () =>
+      import('./pesanan_tambah/pesanan_tambah.module').then(
+        (m) => m.PesananTambahPageModule
+      ),
+  },
+  {
+    path: 'pesanan_edit/:id',
+    loadChildren: () =>
+      import('./pesanan_edit/pesanan_edit.module').then(
+        (m) => m.PesananEditPageModule
+      ),
+  },
+  {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'start',
     pathMatch: 'full',
   },
   {
@@ -107,6 +126,11 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () =>
       import('./register/register.module').then((m) => m.RegisterPageModule),
+  },
+  {
+    path: 'pemesanan',
+    loadChildren: () =>
+      import('./pemesanan/pemesanan.module').then((m) => m.PemesananPageModule),
   },
 ];
 
